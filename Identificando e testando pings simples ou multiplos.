@@ -11,4 +11,71 @@ with open("host.txt") as file:
         print("@" * 10)
         time.sleep(5)
 
-Explicação do códigoo :
+Outro módel :
+
+import os
+import time
+
+# Abre o arquivo "host.txt" no modo de leitura e fecha automaticamente ao sair do bloco "with"
+with open("host.txt") as file:
+    # Lê o conteúdo do arquivo e divide as linhas em uma lista
+    dump = file.read()
+    dump = dump.splitlines()
+    
+    # Itera sobre cada endereço IP no arquivo
+    for ip in dump:
+        # Imprime uma linha de caracteres "%" para separar as execuções
+        print("%" * 10)
+        
+        # Executa o comando de ping para o endereço IP usando o sistema operacional
+        os.system("ping -n 2 {}".format(ip))
+        
+        # Imprime o endereço IP atual
+        print(ip)
+        
+        # Imprime uma linha de caracteres "@" para separar as execuções
+        print("@" * 10)
+        
+        # Aguarda 5 segundos antes de continuar para o próximo endereço IP
+        time.sleep(5)
+
+Aqui estão algumas sugestões de melhorias:
+
+Usar f-strings para formatação de strings:
+Substituir os.system("ping -n 2 {}".format(ip)) por os.system(f"ping -n 2 {ip}") para usar a formatação de string mais moderna.
+
+Utilizar o operador de multiplicação de strings:
+Substituir a impressão de linhas de caracteres por uma linha mais concisa usando o operador de multiplicação de strings.
+
+Adicionar comentários explicativos:
+Incluir comentários para explicar o propósito de partes específicas do código, tornando-o mais compreensível para outros desenvolvedores.
+
+Melhorar o nome das variáveis:
+Escolher nomes de variáveis mais descritivos, evitando nomes genéricos como "dump".
+
+Aqui está o código refatorado:
+import os
+import time
+
+# Abre o arquivo "host.txt" no modo de leitura e fecha automaticamente ao sair do bloco "with"
+with open("host.txt") as file:
+    # Lê o conteúdo do arquivo e divide as linhas em uma lista
+    ip_list = file.read().splitlines()
+    
+    # Itera sobre cada endereço IP no arquivo
+    for ip in ip_list:
+        # Imprime uma linha de caracteres "%" para separar as execuções
+        print("%" * 10)
+        
+        # Executa o comando de ping para o endereço IP usando o sistema operacional
+        os.system(f"ping -n 2 {ip}")
+        
+        # Imprime o endereço IP atual
+        print(ip)
+        
+        # Imprime uma linha de caracteres "@" para separar as execuções
+        print("@" * 10)
+        
+        # Aguarda 5 segundos antes de continuar para o próximo endereço IP
+        time.sleep(5)
+
