@@ -1,0 +1,14 @@
+import os
+import time
+
+with open("host.txt") as file:
+    dump = file.read()
+    dump = dump.splitlines()
+    for ip in dump:
+        print("%" * 10)
+        os.system("ping -n 2 {}".format(ip))
+        print(ip)
+        print("@" * 10)
+        time.sleep(5)
+
+Explicação do códigoo :
