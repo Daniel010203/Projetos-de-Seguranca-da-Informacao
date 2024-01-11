@@ -1,0 +1,76 @@
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+print("Socket criado com sucesso !")
+host = "localhost"
+porta = 5432
+s.bind((host, porta))
+mensagem = "Servidor: Oláaaaaa Cliente e ai,tudo bem ?"
+
+while 1:
+    dados, endereco = s.recvfrom(4096)
+
+    if dados:
+       print("Servidor enviando mensagem... ")
+    s.sendto(dados + (mensagem.encode()),endereco)
+
+
+Explicando o código:
+Este código em Python implementa um servidor UDP simples. Vamos analisar o código passo a passo:
+
+1. **Importação de módulos:**
+   ```python
+   import socket
+   ```
+   Importa o módulo `socket` para manipulação de sockets.
+
+2. **Criação do socket UDP:**
+   ```python
+   s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+   ```
+   Cria um objeto de socket usando a família de endereços IPv4 (`AF_INET`) e o tipo de socket datagrama (`SOCK_DGRAM`), que é associado a UDP.
+
+3. **Impressão de mensagem de sucesso:**
+   ```python
+   print("Socket criado com sucesso !")
+   ```
+   Exibe uma mensagem indicando que o socket do servidor foi criado com sucesso.
+
+4. **Definição de variáveis:**
+   ```python
+   host = "localhost"
+   porta = 5432
+   ```
+   Define o host e a porta em que o servidor estará ouvindo.
+
+5. **Vinculação do socket ao endereço e porta:**
+   ```python
+   s.bind((host, porta))
+   ```
+   Vincula o socket ao endereço e porta especificados para que o servidor possa escutar nesse endereço.
+
+6. **Definição da mensagem do servidor:**
+   ```python
+   mensagem = "Servidor: Oláaaaaa Cliente e ai, tudo bem ?"
+   ```
+   Define a mensagem que o servidor enviará em resposta aos dados recebidos do cliente.
+
+7. **Loop principal de execução do servidor:**
+   ```python
+   while 1:
+       dados, endereco = s.recvfrom(4096)
+   ```
+   - Entra em um loop infinito, onde o servidor espera continuamente por dados recebidos.
+   - `s.recvfrom(4096)` aguarda a recepção de dados do cliente. O número 4096 é o tamanho máximo dos dados que podem ser recebidos em uma única chamada.
+
+8. **Verificação dos dados recebidos e envio da mensagem do servidor:**
+   ```python
+       if dados:
+           print("Servidor enviando mensagem... ")
+       s.sendto(dados + (mensagem.encode()), endereco)
+   ```
+   - Verifica se dados foram recebidos.
+   - Se sim, imprime uma mensagem indicando que o servidor está enviando uma resposta.
+   - Usa `s.sendto()` para enviar os dados recebidos concatenados com a mensagem do servidor codificada de volta ao cliente no mesmo endereço do qual os dados foram recebidos.
+
+Esse código cria um servidor UDP que fica continuamente esperando por mensagens dos clientes, e quando recebe uma mensagem, responde com uma mensagem pré-definida. O loop principal garante que o servidor esteja sempre pronto para receber e responder a novos dados.
