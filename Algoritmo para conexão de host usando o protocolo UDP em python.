@@ -1,0 +1,75 @@
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+print("Cliente socket criado com sucesso !! ")
+host = "localhost"
+porta = 5433
+mensagem = "Olá servidor, tudo bem ? "
+
+try:
+    print("Cliente:  " + mensagem)
+    s.sendto(mensagem.encode(), (host, 5432))
+
+    dados, servidor = s.recvfrom(4096)
+    dados = dados.decode()
+    print("Cliente : " + dados)
+
+finally:
+    print("Cliente :  Fechando a conexão.")
+    s.close()
+
+
+
+Explicação do código:
+
+Este código em Python cria um cliente UDP simples que se comunica com um servidor em um determinado host e porta. Vamos analisar o código passo a passo:
+
+1. **Importação de módulos:**
+   ```python
+   import socket
+   ```
+   Importa o módulo `socket` para manipulação de sockets.
+
+2. **Criação do socket UDP:**
+   ```python
+   s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+   ```
+   Cria um objeto de socket usando a família de endereços IPv4 (`AF_INET`) e o tipo de socket datagrama (`SOCK_DGRAM`), que é associado a UDP.
+
+3. **Impressão de mensagem de sucesso:**
+   ```python
+   print("Cliente socket criado com sucesso !! ")
+   ```
+   Exibe uma mensagem indicando que o socket do cliente foi criado com sucesso.
+
+4. **Definição de variáveis:**
+   ```python
+   host = "localhost"
+   porta = 5433
+   mensagem = "Olá servidor, tudo bem ? "
+   ```
+   Define o host do servidor, a porta à qual o cliente enviará a mensagem e a mensagem a ser enviada.
+
+5. **Bloco `try` para enviar e receber dados:**
+   ```python
+   try:
+       print("Cliente:  " + mensagem)
+       s.sendto(mensagem.encode(), (host, 5432))
+
+       dados, servidor = s.recvfrom(4096)
+       dados = dados.decode()
+       print("Cliente : " + dados)
+   ```
+   - O cliente exibe a mensagem que será enviada.
+   - Usa `s.sendto()` para enviar a mensagem codificada para o servidor no endereço `(host, 5432)`.
+   - Recebe dados do servidor usando `s.recvfrom()` e decodifica os dados recebidos.
+   - Exibe a mensagem recebida do servidor.
+
+6. **Bloco `finally` para fechar a conexão:**
+   ```python
+   finally:
+       print("Cliente :  Fechando a conexão.")
+       s.close()
+   ```
+   Independente de ocorrerem erros ou não, este bloco é executado para fechar o socket do cliente após a comunicação.
+
+Em resumo, o código cria um cliente UDP que se conecta a um servidor em localhost na porta 5432. O cliente envia uma mensagem ao servidor, aguarda a resposta e exibe os dados recebidos. Após a conclusão da comunicação, o socket do cliente é fechado.
