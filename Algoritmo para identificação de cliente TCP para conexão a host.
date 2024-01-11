@@ -1,0 +1,90 @@
+import socket
+import sys
+
+
+def main():
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+    except socket.error as e:
+        print("A conexão falhou !!!")
+        print("Erro: {}".format(e))
+        sys.exit()
+    print("Socket criado com sucesso !")
+
+    hostAlvo = input("Digite o host ou IP a ser conectado: ")
+    portaAlvo = input("Digite a porta a ser conectada: ")
+
+    try:
+        s.connect((hostAlvo, int(portaAlvo)))
+        print("Cliente TCP conectado com sucesso no Host: ", hostAlvo + "e na porta: " + portaAlvo)
+        s.shutdown(2)
+    except socket.error as e:
+        print("Não foi possível se conectar ao Host: " + hostAlvo, " porta " + portaAlvo)
+        print("Erro: {} ".format(e))
+        sys.exit()
+
+
+if __name__ == "__main__":
+    main()
+
+Explicação do código:
+Esse código em Python cria um cliente TCP simples que tenta se conectar a um servidor em um host e porta específicos. Vamos analisar o código passo a passo:
+
+1. **Importação de módulos:**
+   ```python
+   import socket
+   import sys
+   ```
+   Importa os módulos `socket` para manipulação de sockets e `sys` para operações do sistema.
+
+2. **Definição da função `main`:**
+   ```python
+   def main():
+   ```
+   Define a função principal do programa.
+
+3. **Bloco `try-except` para criar um socket:**
+   ```python
+   try:
+       s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+   except socket.error as e:
+       print("A conexão falhou !!!")
+       print("Erro: {}".format(e))
+       sys.exit()
+   ```
+   Tenta criar um socket TCP. Se ocorrer um erro, imprime uma mensagem indicando falha na conexão, exibe detalhes do erro e encerra o programa usando `sys.exit()`.
+
+4. **Impressão de sucesso na criação do socket:**
+   ```python
+   print("Socket criado com sucesso !")
+   ```
+   Se a criação do socket for bem-sucedida, imprime uma mensagem indicando sucesso.
+
+5. **Obtenção do host e porta alvo a serem conectados:**
+   ```python
+   hostAlvo = input("Digite o host ou IP a ser conectado: ")
+   portaAlvo = input("Digite a porta a ser conectada: ")
+   ```
+   Solicita ao usuário que insira o host (ou IP) e a porta do servidor ao qual deseja se conectar.
+
+6. **Bloco `try-except` para conectar ao servidor:**
+   ```python
+   try:
+       s.connect((hostAlvo, int(portaAlvo)))
+       print("Cliente TCP conectado com sucesso no Host: ", hostAlvo + " e na porta: " + portaAlvo)
+       s.shutdown(2)
+   except socket.error as e:
+       print("Não foi possível se conectar ao Host: " + hostAlvo, " porta " + portaAlvo)
+       print("Erro: {} ".format(e))
+       sys.exit()
+   ```
+   Tenta se conectar ao servidor usando o host e a porta fornecidos. Se a conexão for bem-sucedida, imprime uma mensagem indicando sucesso na conexão. Em seguida, encerra a conexão usando `s.shutdown(2)`. Se ocorrer um erro durante a conexão, imprime uma mensagem indicando a falha e exibe detalhes do erro antes de encerrar o programa.
+
+7. **Execução da função `main` quando o script é executado diretamente:**
+   ```python
+   if __name__ == "__main__":
+       main()
+   ```
+   Garante que a função `main()` seja executada apenas quando o script for executado diretamente, não quando importado como um módulo em outro script.
+
+Em resumo, o código cria um cliente TCP que tenta se conectar a um servidor usando um socket. Ele lida com erros durante a criação do socket e a conexão com o servidor, fornecendo mensagens informativas ao usuário.
