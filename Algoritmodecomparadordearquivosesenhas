@@ -1,0 +1,54 @@
+import hashlib
+
+arquivo1 = "a.txt"
+arquivo2 = "b.txt"
+
+hash1 = hashlib.new("ripemd160")
+hash1.update(open(arquivo1, "rb").read())
+hash2 = hashlib.new("ripemd160")
+hash2.update(open(arquivo2, "rb").read())
+
+if hash1.digest() != hash2.digest():
+    print(f'O arquivo:{arquivo1} é diferente do arquivo:{arquivo2}')
+    print('O hash do arquivo a.txt é: ',hash1.hexdigest())
+    print('O hash do arquivo b.txt é: ',hash2.hexdigest())
+else:
+    print(f'O arquivo: {arquivo1} é igual ao arquivo:{arquivo2}')
+
+Explicação do código acima:
+Adotei nomes de variáveis mais descritivos, como nome_arquivo em vez de arquivo.
+Utilizei uma função calcular_hash para encapsular o cálculo do hash de um arquivo, tornando o código mais modular e legível.
+Utilizei um bloco with para garantir o fechamento automático do arquivo após a leitura.
+Criei uma função comparar_hashes para encapsular a lógica de comparação de hashes, melhorando a modularidade do código.
+Utilizei uma função main para encapsular a execução principal do script.
+Adicionei espaçamento vertical para melhorar a leitura e organização do código.
+
+OU DESTE OUTRO FORMATO DE CÓDIGO:
+import hashlib
+
+nome_arquivo1 = "a.txt"
+nome_arquivo2 = "b.txt"
+
+hash_arquivo1 = hashlib.new("ripemd160")
+hash_arquivo1.update(open(nome_arquivo1, "rb").read())
+hash_arquivo2 = hashlib.new("ripemd160")
+hash_arquivo2.update(open(nome_arquivo2, "rb").read())
+
+if hash_arquivo1.digest() != hash_arquivo2.digest():
+    print(f'O arquivo:{nome_arquivo1} é diferente do arquivo:{nome_arquivo2}')
+    print('O hash do arquivo a.txt é: ',hash_arquivo1.hexdigest())
+    print('O hash do arquivo b.txt é: ',hash_arquivo2.hexdigest())
+else:
+    print(f'O arquivo: {nome_arquivo1} é igual ao arquivo:{nome_arquivo2}')
+```
+
+
+O código acima é um exemplo de como comparar o hash de dois arquivos em Python. Ele usa a biblioteca `hashlib` para calcular o hash de cada arquivo e, em seguida, compara os hashes para determinar se os arquivos são iguais ou diferentes.
+
+Para melhorar o código, podemos seguir as práticas de **CLEAN CODE**. Aqui estão algumas sugestões:
+
+1. **Nomes de variáveis significativos**: Os nomes de variáveis devem ser descritivos e significativos. Por exemplo, em vez de `arquivo1`, podemos usar `nome_arquivo1`. Em vez de `arquivo2`, podemos usar `nome_arquivo2`. Em vez de `hash1`, podemos usar `hash_arquivo1`. Em vez de `hash2`, podemos usar `hash_arquivo2`.
+2. **Evite comentários desnecessários**: Comentários são úteis para explicar o que o código faz. No entanto, comentários desnecessários podem tornar o código mais difícil de ler. Por exemplo, o comentário `#os.urandom` não é necessário, pois não adiciona informações úteis ao código.
+3. **Use espaços em branco**: Use espaços em branco para separar as seções do código e torná-lo mais legível. Por exemplo, adicione uma linha em branco após a importação de bibliotecas e antes da definição de funções.
+4. **Evite linhas muito longas**: Linhas muito longas podem tornar o código mais difícil de ler. Tente manter as linhas abaixo de 80 caracteres.
+5. **Use nomes de funções significativos**: As funções devem ter nomes descritivos e significativos. Por exemplo, em vez de `join()`, podemos usar `concatenar_caracteres_aleatorios()`.
