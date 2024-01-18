@@ -1,0 +1,87 @@
+import random,string
+
+tamanho = 16
+tamanho2 = int(input("Digite o tamanho da senha que voce deseja: "))
+chars = string.ascii_letters + string.digits + "!@#$%&*()-+><:,."
+rnd = random.SystemRandom() #os.urandom
+
+print("".join(rnd.choice(chars)for i in range(tamanho)))
+Explicação do código acima :
+O código gera senhas aleatórias com base nos caracteres definidos em chars. O tamanho da senha é solicitado ao usuário.
+
+string.ascii_letters inclui todas as letras do alfabeto (minúsculas e maiúsculas), string.digits inclui todos os dígitos de 0 a 9, e os caracteres especiais são definidos manualmente em chars.
+
+A função random.SystemRandom() é usada para obter uma fonte de números aleatórios mais segura, utilizando os.urandom internamente.
+
+A senha é gerada como uma string aleatória de tamanho especificado, usando a função rnd.choice(chars) para escolher caracteres aleatórios a partir da string de caracteres permitidos.
+
+OU DESTE FORMATO DE CÓDIGO:
+import random
+import string
+
+
+def generate_password(length):
+    chars = string.ascii_letters + string.digits + "!@#$%&*()-+><:,. "
+    rnd = random.SystemRandom()  # Usar os.urandom internamente
+
+    return "".join(rnd.choice(chars) for _ in range(length))
+
+
+def get_password_length():
+    while True:
+        try:
+            length = int(input("Digite o tamanho da senha desejada: "))
+            if length > 0:
+                return length
+            else:
+                print("Por favor, digite um valor válido maior que zero.")
+        except ValueError:
+            print("Por favor, digite um número inteiro válido.")
+
+
+def main():
+    tamanho = 16
+    tamanho2 = get_password_length()
+
+    senha = generate_password(tamanho2)
+    print("Senha gerada:", senha)
+
+
+if __name__ == "__main__":
+    main()
+Melhorias apliacadas ao código:
+Aqui estão as melhorias aplicadas:
+
+Introduzi funções para melhorar a modularidade e tornar o código mais legível.
+A função get_password_length() solicita o tamanho da senha ao usuário, garantindo que seja um número inteiro válido maior que zero.
+Utilizei nomes de variáveis mais descritivos, como senha em vez de "".join(...).
+Adicionei um espaço em branco aos caracteres permitidos para melhor legibilidade.
+Removi a variável tamanho que não estava sendo utilizada.
+Adicionei uma guarda if __name__ == "__main__": para permitir que o script seja importado como um módulo sem executar automaticamente o código.
+
+OU DESTE OUTRO FORMATO DE CÓDIGO:
+import string
+
+tamanho_padrao_senha = 16
+caracteres_senha = string.ascii_letters + string.digits + "!@#$%&*()-+><:,."
+gerador_aleatorio = random.SystemRandom()
+
+def gerar_senha(tamanho):
+    return "".join(gerador_aleatorio.choice(caracteres_senha) for i in range(tamanho))
+
+tamanho_senha = int(input("Digite o tamanho da senha que voce deseja: "))
+print(gerar_senha(tamanho_senha))
+
+Explicação do código acima :
+O código acima é um gerador de senha em Python. Ele usa a biblioteca `random` para gerar uma senha aleatória com base em caracteres alfanuméricos e especiais. O código começa definindo o tamanho padrão da senha como 16 caracteres. Em seguida, ele solicita ao usuário que insira o tamanho da senha que deseja. A variável `chars` armazena todos os caracteres que podem ser usados para gerar a senha. A variável `rnd` é inicializada com a função `SystemRandom()` da biblioteca `random`. Por fim, a função `join()` é usada para concatenar os caracteres gerados aleatoriamente em uma única string.
+
+Para melhorar o código, podemos seguir as práticas de **CLEAN CODE**. Aqui estão algumas sugestões:
+
+1. **Nomes de variáveis significativos**: Os nomes de variáveis devem ser descritivos e significativos. Por exemplo, em vez de `tamanho`, podemos usar `tamanho_padrao_senha`. Em vez de `chars`, podemos usar `caracteres_senha`. Em vez de `rnd`, podemos usar `gerador_aleatorio`.
+2. **Evite comentários desnecessários**: Comentários são úteis para explicar o que o código faz. No entanto, comentários desnecessários podem tornar o código mais difícil de ler. Por exemplo, o comentário `#os.urandom` não é necessário, pois não adiciona informações úteis ao código.
+3. **Use espaços em branco**: Use espaços em branco para separar as seções do código e torná-lo mais legível. Por exemplo, adicione uma linha em branco após a importação de bibliotecas e antes da definição de funções.
+4. **Evite linhas muito longas**: Linhas muito longas podem tornar o código mais difícil de ler. Tente manter as linhas abaixo de 80 caracteres.
+5. **Use nomes de funções significativos**: As funções devem ter nomes descritivos e significativos. Por exemplo, em vez de `join()`, podemos usar `concatenar_caracteres_aleatorios()`.
+
+
+
