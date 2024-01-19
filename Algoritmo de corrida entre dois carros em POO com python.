@@ -1,0 +1,51 @@
+import threading
+import time
+
+def carro(velocidade, piloto):
+    trajeto = 0
+    while trajeto <= 100:
+        trajeto += velocidade
+        time.sleep(0.5)
+        print("Piloto: {}, Trajeto: {} km".format(piloto, trajeto))
+
+if __name__ == "__main__":
+    t_carro1 = threading.Thread(target=carro, args=(1, "Bruno"))
+    t_carro2 = threading.Thread(target=carro, args=(1, "Python"))
+
+    t_carro1.start()
+    t_carro2.start()
+    t_carro1.join()
+    t_carro2.join()
+
+Explicação do código :
+Vamos analisar o código linha por linha:
+
+import threading: Importa o módulo threading, que fornece suporte para threads em Python.
+
+import time: Importa o módulo time, que fornece funções relacionadas ao tempo.
+
+def carro(velocidade, piloto): Define uma função chamada carro que simula o movimento de um carro. Recebe dois parâmetros: velocidade (a velocidade do carro) e piloto (o nome do piloto).
+
+trajeto = 0: Inicializa a variável trajeto com o valor zero, representando a distância percorrida pelo carro.
+
+while trajeto <= 100:: Inicia um loop while que continua enquanto o valor de trajeto for menor ou igual a 100.
+
+trajeto += velocidade: Incrementa a variável trajeto com a velocidade do carro.
+
+time.sleep(0.5): Pausa a execução da thread por 0.5 segundos para simular o intervalo de tempo entre os incrementos do trajeto.
+
+print("Piloto: {}, Trajeto: {} km".format(piloto, trajeto)): Exibe na tela informações sobre o piloto e a distância percorrida.
+
+if __name__ == "__main__":: Verifica se o script está sendo executado diretamente (não sendo importado como um módulo).
+
+t_carro1 = threading.Thread(target=carro, args=(1, "Bruno")): Cria uma thread t_carro1 que executa a função carro com velocidade 1 e piloto "Bruno".
+
+t_carro2 = threading.Thread(target=carro, args=(1, "Python")): Cria uma thread t_carro2 que executa a função carro com velocidade 1 e piloto "Python".
+
+t_carro1.start(): Inicia a execução da thread t_carro1.
+
+t_carro2.start(): Inicia a execução da thread t_carro2.
+
+t_carro1.join(): Espera a thread t_carro1 concluir antes de continuar a execução do código principal.
+
+t_carro2.join(): Espera a thread t_carro2 concluir antes de continuar a execução do código principal.
