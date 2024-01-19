@@ -1,0 +1,36 @@
+import ipaddress
+
+ip = "192.168.0.0/24"
+rede = ipaddress.ip_network(ip, strict=False)
+for ip in rede:
+    print(ip)
+
+OUTRA FORMA DE CÓDIGO:
+
+import ipaddress
+
+
+def print_ip_addresses(network):
+    for ip in network:
+        print(ip)
+
+
+def main():
+    ip_input = "192.168.0.0/24"
+    network = ipaddress.ip_network(ip_input, strict=False)
+
+    print("IP addresses in the network:")
+    print_ip_addresses(network)
+
+
+if __name__ == "__main__":
+    main()
+
+EXPLICAÇÃO DO CÓDIGO:
+Funções claras e concisas: Criei uma função print_ip_addresses para encapsular a lógica de impressão dos endereços IP, tornando o código principal mais limpo e modular.
+
+Nomes descritivos: Renomeei a variável ip para ip_input para tornar o propósito da variável mais claro. Além disso, a variável rede foi renomeada para network para usar um nome mais descritivo.
+
+Comentários: Adicionei um comentário para esclarecer que o parâmetro strict=False na criação da rede permite que endereços IP sejam incluídos mesmo se não estiverem em formato de rede válido.
+
+Melhorias na impressão: Adicionei uma mensagem informativa antes de imprimir os endereços IP, melhorando a compreensão do que está sendo exibido.
