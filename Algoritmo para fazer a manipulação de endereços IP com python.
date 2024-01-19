@@ -1,0 +1,26 @@
+import ipaddress
+
+ip = "192.168.0.1"
+endereco = ipaddress.ip_address(ip)
+print(endereco + 257)
+
+O CÓDIGO DE OUTRA FORMA:
+
+import ipaddress
+
+def main():
+    ip = "192.168.0.1"
+    endereco = ipaddress.ip_address(ip)
+    resultado = endereco + 257
+    print(f"Endereço IP somado com 257: {resultado}")
+
+if __name__ == "__main__":
+    main()
+
+Principais melhorias e justificativas:
+
+Função principal: Envolve o código principal em uma função chamada main(). Isso é uma prática comum para melhorar a modularidade do código.
+
+Utilização do if __name__ == "__main__":: Coloca a execução principal dentro de um bloco if __name__ == "__main__": para garantir que o código seja executado apenas quando o script é executado diretamente e não quando é importado como um módulo.
+
+F-string para impressão: Substitui a formatação antiga por f-strings, tornando a impressão de resultados mais legível e concisa.
