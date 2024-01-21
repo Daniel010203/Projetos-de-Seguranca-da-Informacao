@@ -1,0 +1,10 @@
+from bs4 import BeautifulSoup  # Corrigi o nome do módulo
+
+import requests
+
+site = requests.get("https://www.climatempo.com.br/").content
+# objeto site recebendo o conteudo da requisição http do site ....
+soup = BeautifulSoup(site, 'html.parser')  # Corrigi o nome do módulo
+# objeto soup baixando do site o html
+print(soup.prettify())
+# transforma o html em string e o print vai exibir o html
