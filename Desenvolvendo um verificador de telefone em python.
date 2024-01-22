@@ -1,0 +1,43 @@
+import phonenumbers
+
+from phonenumbers import geocoder
+
+phone = input("Digite o telefone no formato +5521970115924: ") #O formato do telefone é +55(país)21(operadora do estado)970115924(número de telefone)
+
+phone_numbers = phonenumbers.parse(phone)
+
+print(geocoder.description_for_number(phone_numbers, " pt"))
+
+EXPLICAÇÃO DO CÓDIGO:
+O código fornecido é um script simples em Python que utiliza a biblioteca `phonenumbers` para verificar a localização geográfica de um número de telefone. Aqui está uma explicação passo a passo do código:
+
+1. **Importação de Módulos:**
+   ```python
+   import phonenumbers
+   from phonenumbers import geocoder
+   ```
+   - Importa a biblioteca `phonenumbers` e o módulo `geocoder` dela.
+
+2. **Entrada do Usuário:**
+   ```python
+   phone = input("Digite o telefone no formato +5521970115924: ")
+   ```
+   - Solicita ao usuário que insira um número de telefone no formato internacional (+55 para o Brasil, seguido pelo DDI, DDD e número do telefone).
+
+3. **Análise do Número de Telefone:**
+   ```python
+   phone_numbers = phonenumbers.parse(phone)
+   ```
+   - Usa a função `parse` da biblioteca `phonenumbers` para analisar o número de telefone fornecido pelo usuário.
+
+4. **Obtenção da Descrição Geográfica:**
+   ```python
+   print(geocoder.description_for_number(phone_numbers, " pt"))
+   ```
+   - Utiliza a função `description_for_number` do módulo `geocoder` para obter a descrição geográfica do número de telefone analisado.
+   - O segundo argumento, "pt", indica que a descrição deve ser fornecida em português.
+
+**Nota Importante:**
+- O código depende da precisão das informações de geolocalização disponíveis na biblioteca `phonenumbers`. Nem todos os números de telefone podem ser associados a uma localização específica com alta precisão.
+- O código pressupõe que o número de telefone é inserido no formato internacional específico para o Brasil (+55 DDI, seguido por DDD e o número de telefone). Certifique-se de fornecer o número no formato correto para obter resultados precisos.
+- O código pode ser aprimorado para lidar com diferentes formatos de entrada ou para fornecer uma mensagem de erro mais útil se o formato não estiver correto.
