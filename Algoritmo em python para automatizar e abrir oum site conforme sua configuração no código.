@@ -1,0 +1,48 @@
+from tkinter import *
+
+root = Tk()
+
+root.title("Abrir Browser")
+root.geometry("300x200")
+
+def goggle():
+    webbrowser.open("www.google.com")
+
+mygoogle = Button(root, text="Abrir Google", command=goggle().pack(pady=20))
+root = mainloop()
+
+EXPLICAÇÃO DO CÓDIGO:
+O código fornecido é uma aplicação básica usando a biblioteca Tkinter em Python para criar uma janela gráfica simples com um botão que, quando pressionado, abre o navegador padrão e redireciona para o site do Google. No entanto, há um pequeno erro no código que precisa ser corrigido.
+
+Aqui está uma explicação do código e a versão corrigida:
+
+```python
+from tkinter import *
+import webbrowser
+
+root = Tk()
+
+root.title("Abrir Browser")
+root.geometry("300x200")
+
+def abrir_google():
+    webbrowser.open("https://www.google.com")
+
+# Correção: Remover os parênteses após 'goggle' e adicionar pady como um argumento separado
+mygoogle = Button(root, text="Abrir Google", command=abrir_google).pack(pady=20)
+
+# Correção: mainloop é uma função, não uma variável
+root.mainloop()
+```
+
+Principais correções e melhorias:
+
+1. **Importação do módulo `webbrowser`:** Adicionou a importação do módulo `webbrowser`, que é necessário para abrir URLs.
+
+2. **Correção da Função:** Renomeou a função `goggle` para `abrir_google` para tornar o nome mais descritivo.
+
+3. **Correção do Botão:** Removido os parênteses após `abrir_google` na linha que cria o botão e corrigido o posicionamento do `pack`. Agora, a função `abrir_google` será chamada quando o botão for clicado.
+
+4. **Correção do `mainloop()`:** Adicionado o `mainloop()` no final do código para iniciar o loop de eventos principal e manter a janela aberta.
+
+Com essas correções, o código deve funcionar corretamente, criando uma interface gráfica simples com um botão que, quando pressionado, abrirá o navegador padrão no site do Google.
