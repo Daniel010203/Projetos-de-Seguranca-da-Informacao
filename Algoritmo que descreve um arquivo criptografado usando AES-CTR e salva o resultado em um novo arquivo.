@@ -20,3 +20,57 @@ new_file = "teste.txt"
 new_file = open(f'{new_file}', "wb")
 new_file.write(decrypt_data)
 new_file.close()
+
+EXPLICAÇÃO DO CÓDIGO:
+
+Este código em Python parece estar relacionado a operações de descriptografia de um arquivo que foi criptografado usando o modo de operação CTR (Counter) do algoritmo AES (Advanced Encryption Standard). Vou explicar as partes do código:
+
+```python
+import os
+import pyaes
+```
+
+- `os`: Módulo que fornece uma maneira de usar funcionalidades dependentes do sistema operacional, como remoção de arquivos (`os.remove`).
+- `pyaes`: Uma biblioteca em Python que implementa o algoritmo AES.
+
+```python
+file_name = "teste.txt.ransomwaretroll"
+file = open(file_name, "rb")
+file_data = file.read()
+file.close()
+```
+
+- `file_name`: Nome do arquivo criptografado que será descriptografado.
+- `file`: Abre o arquivo criptografado em modo de leitura binária (`"rb"`).
+- `file_data`: Lê o conteúdo do arquivo criptografado e armazena em `file_data`.
+- `file.close()`: Fecha o arquivo após a leitura.
+
+```python
+key = b"testeransomwares"
+aes = pyaes.AESModeOfOperationCTR(key)
+decrypt_data = aes.decrypt(file_data)
+```
+
+- `key`: A chave que será usada para descriptografar o arquivo.
+- `aes`: Cria uma instância do objeto `AESModeOfOperationCTR` usando a chave fornecida.
+- `decrypt_data`: Usa o objeto `aes` para descriptografar os dados lidos do arquivo criptografado.
+
+```python
+os.remove(file_name)
+```
+
+- `os.remove(file_name)`: Remove o arquivo criptografado após a descriptografia, presumivelmente como uma medida de segurança.
+
+```python
+new_file = "teste.txt"
+new_file = open(f'{new_file}', "wb")
+new_file.write(decrypt_data)
+new_file.close()
+```
+
+- `new_file`: Nome do arquivo descriptografado que será criado.
+- `new_file = open(f'{new_file}', "wb")`: Abre o novo arquivo em modo de escrita binária (`"wb"`).
+- `new_file.write(decrypt_data)`: Escreve os dados descriptografados no novo arquivo.
+- `new_file.close()`: Fecha o novo arquivo após a escrita.
+
+Em resumo, este código descriptografa um arquivo criptografado usando AES-CTR e salva o resultado em um novo arquivo. É importante observar que o uso de chaves de forma estática no código pode representar um risco de segurança, e este exemplo não segue as melhores práticas de segurança para lidar com criptografia em ambientes reais. O código também remove o arquivo criptografado original após a descriptografia.
